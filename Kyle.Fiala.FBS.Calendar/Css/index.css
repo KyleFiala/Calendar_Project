@@ -1,0 +1,29 @@
+﻿#calendar {
+    float: left;
+    width: 70%;
+}
+
+
+#scheduler {
+    float: right;
+    margin: 10px;
+    width: 25%;
+}
+
+#eventScheduler{
+    float: left;
+}
+
+#eventInfo {
+    float: left;
+}
+
+#cancelButton {
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+#submitButton {
+    margin-top: 5px;
+    margin-right: 5px;
+}

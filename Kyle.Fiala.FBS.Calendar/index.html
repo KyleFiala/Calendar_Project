@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>FBS Calendar</title>
+    <link href="Content/fullcalendar.css" rel="stylesheet" />
+    <link href="Content/jquery.timepicker.css" rel="stylesheet" />
+    <link href="Css/index.css" rel="stylesheet" />
+    <script src="Scripts/jquery.min.js"></script>
+    <script src="Scripts/moment.min.js"></script>
+    <script src="Scripts/jquery.timepicker.min.js"></script>
+    <script type="text/javascript" src="Scripts/calendar.js"></script>
+    <script src="Scripts/fullcalendar.min.js"></script> <!--must be loaded after jquery.min.js and moment.min.js-->
+
+</head>
+<body>
+    <div id="calendar"></div>
+    <div id="scheduler">
+
+        <div hidden="hidden" id="eventSchedulerDiv">
+            
+            <h2> Scheduler: </h2>
+            <table>
+                <tr>
+                    <th id="dayInfo">Day: </th>
+                    <td id="dataDay"></td>
+                </tr>
+            </table>
+
+            <form id="eventSchedulerForm">
+                Event Title:<br />
+                <input id="eventTitleInput" type="text" name="eventTitle" /><br />
+                Time:<br />
+                <input id="eventTimeInput" type="text" name="eventTime" class="timepicker" /><br />
+            </form>
+
+            <button id="submitButton" class="generalButton">Submit</button>
+            
+            <button id="cancelButton" class="generalButton">Cancel</button>
+        </div>
+
+    </div>
+</body>
+</html>
