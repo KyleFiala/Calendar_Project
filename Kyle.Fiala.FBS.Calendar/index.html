@@ -22,16 +22,22 @@
             <h2> Scheduler: </h2>
             <table>
                 <tr>
-                    <th id="dayInfo">Day: </th>
+                    <th id="dayInfo">Selected Day: </th>
                     <td id="dataDay"></td>
                 </tr>
             </table>
 
             <form id="eventSchedulerForm">
+                <br />
                 Event Title:<br />
-                <input id="eventTitleInput" type="text" name="eventTitle" /><br />
-                Time:<br />
-                <input id="eventTimeInput" type="text" name="eventTime" class="timepicker" /><br />
+                <input id="eventTitleInput" type="text" name="eventTitle" placeholder="Enter event title here" /><br />
+                Date:<br />
+                <input id="eventDateInput" type="text" name="eventDate" disabled/><br />
+                Start:<br />
+                <input id="eventStartTimeInput" type="text" name="eventStartTime" class="timepicker" /><br />
+                End:<br />
+                <input id="eventEndTimeInput" type="text" name="eventEndTime" class="timepicker"/><br />
+                <input id="eventAllDayCheckbox" type="checkbox" name="eventAllDay" />All day event<br />
             </form>
 
             <button id="submitButton" class="generalButton">Submit</button>
