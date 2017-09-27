@@ -169,11 +169,13 @@
             setDayData(date);
             _tempDate = getDayData(date);
             openScheduler();
+            closeEventEditor();
         },
         eventClick: function (calEvent, jsEvent, view) {
             selectedEvent(calEvent);
             openEventEditor();
             populateEventEditor(getEventData(calEvent));
+            closeScheduler();
 
         },
         // Formats event after a event has been rendered
