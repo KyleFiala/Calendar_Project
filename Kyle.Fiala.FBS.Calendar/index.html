@@ -6,11 +6,16 @@
     <link href="Content/fullcalendar.css" rel="stylesheet" />
     <link href="Content/jquery.timepicker.css" rel="stylesheet" />
     <link href="Css/index.css" rel="stylesheet" />
+    <!--Script load order depends on depency of each js file. Be aware of that.-->
     <script src="Scripts/jquery.min.js"></script>
     <script src="Scripts/moment.min.js"></script>
     <script src="Scripts/jquery.timepicker.min.js"></script>
+    <script src="Scripts/scheduler-functions.js"></script>
+    <script src="Scripts/event-editor-functions.js"></script>
     <script type="text/javascript" src="Scripts/calendar.js"></script>
-    <script src="Scripts/fullcalendar.min.js"></script> <!--must be loaded after jquery.min.js and moment.min.js-->
+    <script src="Scripts/fullcalendar.min.js"></script>
+    
+     
 
 </head>
 <body>
@@ -56,7 +61,7 @@
                 Event Title:<br />
                 <input id="eventEditTitleInput" type="text" name="eventEditTitle" /><br />
                 Date:<br />
-                <input id="eventEditDateInput" type="text" name="eventEditDate" /><br />
+                <input id="eventEditDateInput" type="text" name="eventEditDate" placeholder="YYYY-MM-DD"/><br />
                 Start:<br />
                 <input id="eventEditStartTimeInput" type="text" name="eventEditStartTime" class="timepicker" /><br />
                 End:<br />
