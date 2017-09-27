@@ -80,7 +80,7 @@
         }
 
         $('#calendar').fullCalendar('renderEvent', eventObject, true);
-    },
+    }
 
 };
 
@@ -108,14 +108,14 @@ $(document).ready(function () {
 
     $('#cancelButton').click(function () {
         schedulerFunctions.closeScheduler();
-    })
+    });
 
     $('#submitButton').click(function () {
         schedulerFunctions.createEvent();
         schedulerFunctions.closeScheduler();
-    })
+    });
 
     $('#eventAllDayCheckbox').click(function () {
         schedulerFunctions.toggleStartEndInput();
-    })
+    });
 });
