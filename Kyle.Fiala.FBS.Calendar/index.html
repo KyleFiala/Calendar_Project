@@ -43,6 +43,30 @@
             <button id="submitButton" class="generalButton">Submit</button>
             
             <button id="cancelButton" class="generalButton">Cancel</button>
+
+        </div>
+
+        
+        <div hidden="hidden" id="eventEditorDiv">
+
+            <h2 id="eventTitleHeader"> Edit Event: </h2>
+
+            <form id="eventEditorForm">
+                <br />
+                Event Title:<br />
+                <input id="eventEditTitleInput" type="text" name="eventEditTitle" /><br />
+                Date:<br />
+                <input id="eventEditDateInput" type="text" name="eventEditDate" /><br />
+                Start:<br />
+                <input id="eventEditStartTimeInput" type="text" name="eventEditStartTime" class="timepicker" /><br />
+                End:<br />
+                <input id="eventEditEndTimeInput" type="text" name="eventEditEndTime" class="timepicker" /><br />
+                <input id="eventEditAllDayCheckbox" type="checkbox" name="eventEditAllDay" />All day event<br />
+            </form>
+
+            <button id="submitEditButton" class="generalButton">Submit Changes</button>
+
+            <button id="cancelEditButton" class="generalButton">Cancel</button>
         </div>
 
     </div>

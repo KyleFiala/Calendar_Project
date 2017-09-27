@@ -10,7 +10,11 @@
     width: 25%;
 }
 
-#eventScheduler{
+#eventSchedulerDiv{
+    float: left;
+}
+
+#eventEditorDiv{
     float: left;
 }
 

@@ -1,6 +1,8 @@
 ﻿$(document).ready(function () {
     //Gobal variable declarations
     var _tempDate;
+    var _tempStart;
+    var _tempEnd = document.getElementById('eventEditEndTimeInput').value;
 
     // setDayData: used to retrieve data of clicked day and display it in "Selected Day"
     // using id's from table data elements.
@@ -55,6 +57,25 @@
         }
     };
 
+    // toggleEditStartEndInput: disables or enables start and end input fields in event editor based on all day checkbox bool.
+    function toggleEditStartEndInput() {
+        
+        if (document.getElementById('eventEditAllDayCheckbox').checked) {
+            _tempStart = document.getElementById('eventEditStartTimeInput').value;
+            _tempEnd = document.getElementById('eventEditEndTimeInput').value;
+            document.getElementById('eventEditStartTimeInput').value = "";
+            document.getElementById('eventEditEndTimeInput').value = "";
+            document.getElementById('eventEditEndTimeInput').disabled = true;
+            document.getElementById('eventEditStartTimeInput').disabled = true;
+        } else {
+            document.getElementById('eventEditStartTimeInput').value = _tempStart;
+            document.getElementById('eventEditEndTimeInput').value = _tempEnd;
+            document.getElementById('eventEditEndTimeInput').disabled = false;
+            document.getElementById('eventEditStartTimeInput').disabled = false
+        }
+    };
+
+    // createEvent: creates and Event Object and then renders that object onto the calendar
     function createEvent() {
         var eventObject = {};
         if (!document.getElementById('eventAllDayCheckbox').checked) {
@@ -76,6 +97,45 @@
         $('#calendar').fullCalendar('renderEvent', eventObject, true);
     };
 
+    // getEventData: retrieves data from an event and returns it in an easy to access object
+    function getEventData(calEvent) {
+        var tempStart = moment(calEvent.start).format('YYYY-MM-DD HH:mm');
+        var tempEnd = moment(calEvent.end).format('YYYY-MM-DD HH:mm');
+        var tempSplitStart = tempStart.split(" ");
+        var tempSplitEnd = tempEnd.split(" ");
+
+        var eventObject = {
+            title: calEvent.title,
+            startDate: tempSplitStart[0],
+            startTime: tempSplitStart[1],
+            endDate: tempSplitEnd[0],
+            endTime: tempSplitEnd[1],
+            allDay: calEvent.allDay
+        };
+
+        return eventObject;
+    };
+
+    // openEventEditor: opens event Editor pane
+    function openEventEditor() {
+        document.getElementById('eventEditorDiv').hidden = "";
+    }
+
+    // openEventEditor: closes event Editor pane
+    function closeEventEditor() {
+        document.getElementById('eventEditorDiv').hidden = "hidden";
+    }
+
+    // populateEventEditor: populates the event Editor with clicked on event data.
+    function populateEventEditor(eventObject) {
+        document.getElementById('eventTitleHeader').innerHTML = 'Event: ' + eventObject.title;
+        document.getElementById('eventEditTitleInput').value = eventObject.title;
+        document.getElementById('eventEditDateInput').value = eventObject.startDate;
+        document.getElementById('eventEditStartTimeInput').value = eventObject.startTime;
+        document.getElementById('eventEditEndTimeInput').value = eventObject.endTime;
+        document.getElementById('eventEditAllDayCheckbox').value = eventObject.allDay;
+    };
+
     // Code below relies on an HTML element with an id of "calendar". Initializes fullCalendar
     $('#calendar').fullCalendar({
         // header, used to format the display of fullCalendar
@@ -89,6 +149,11 @@
             setDayData(date);
             _tempDate = getDayData(date);
             openScheduler();
+        },
+        eventClick: function (calEvent, jsEvent, view) {
+            openEventEditor();
+            populateEventEditor(getEventData(calEvent));
+
         },
         // Formats event after a event has been rendered
         eventAfterRender: function(event, $el, view ) {
@@ -124,6 +189,14 @@
         return false;
     });
 
+    $('#eventEditStartTimeInput').keydown(function () {
+        return false;
+    });
+
+    $('#eventEditEndTimeInput').keydown(function () {
+        return false;
+    });
+
     $('#cancelButton').click(function () {
         closeScheduler();
     })
@@ -135,6 +208,17 @@
 
     $('#eventAllDayCheckbox').click(function () {
         toggleStartEndInput();
+    })
+
+    $('#cancelEditButton').click(function () {
+        closeEventEditor();
+    })
+
+    $('#submitEditButton').click(function () {
+    })
+
+    $('#eventEditAllDayCheckbox').click(function () {
+        toggleEditStartEndInput();
     })
 
 
