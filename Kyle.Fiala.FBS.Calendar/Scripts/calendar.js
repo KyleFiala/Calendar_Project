@@ -1,8 +1,10 @@
 ﻿$(document).ready(function () {
     //Gobal variable declarations
+    var _eventId = 0;
     var _tempDate;
     var _tempStart;
     var _tempEnd = document.getElementById('eventEditEndTimeInput').value;
+    var _selectedEvent = {};
 
     // setDayData: used to retrieve data of clicked day and display it in "Selected Day"
     // using id's from table data elements.
@@ -80,6 +82,7 @@
         var eventObject = {};
         if (!document.getElementById('eventAllDayCheckbox').checked) {
             eventObject = {
+                id: _eventId++,
                 title: document.getElementById('eventTitleInput').value,
                 start: document.getElementById('eventDateInput').value + "T" + document.getElementById('eventStartTimeInput').value,
                 end: document.getElementById('eventDateInput').value + "T" + document.getElementById('eventEndTimeInput').value,
@@ -88,6 +91,7 @@
             };
         } else {
             eventObject = {
+                id: _eventId++,
                 title: document.getElementById('eventTitleInput').value,
                 start: document.getElementById('eventDateInput').value,
                 overlap: true
@@ -116,6 +120,18 @@
         return eventObject;
     };
 
+    function selectedEvent(calEvent) {
+        var tempID = calEvent.id;
+        _selectedEvent = {
+            title: calEvent.title,
+            start: calEvent.start,
+            end: calEvent.end,
+            id: tempID,
+            overlap: true
+
+        };
+    }
+
     // openEventEditor: opens event Editor pane
     function openEventEditor() {
         document.getElementById('eventEditorDiv').hidden = "";
@@ -136,6 +152,10 @@
         document.getElementById('eventEditAllDayCheckbox').value = eventObject.allDay;
     };
 
+    function removeEvent(event) {
+        $('#calendar').fullCalendar('removeEvents', _selectedEvent.id);
+    }
+
     // Code below relies on an HTML element with an id of "calendar". Initializes fullCalendar
     $('#calendar').fullCalendar({
         // header, used to format the display of fullCalendar
@@ -151,6 +171,7 @@
             openScheduler();
         },
         eventClick: function (calEvent, jsEvent, view) {
+            selectedEvent(calEvent);
             openEventEditor();
             populateEventEditor(getEventData(calEvent));
 
@@ -219,6 +240,11 @@
 
     $('#eventEditAllDayCheckbox').click(function () {
         toggleEditStartEndInput();
+    })
+
+    $("#deleteEventButton").click(function () {
+        removeEvent(_selectedEvent);
+        closeEventEditor();
     })
 
 
