@@ -12,12 +12,16 @@
     // splitDate = ['dayName', 'month', 'dayNumber', 'year', 'time', 'monthNumber']
     getDayData: function(date) {
         var formattedDate = date.toString().replace(" GMT+0000", "");
-        var tempDate = new Date($('#calendar').fullCalendar('getDate'));
-        var month_int = tempDate.getMonth() + 1;
-
         var splitDate = formattedDate.split(" ");
-        splitDate.push("0" + month_int.toString());
+        var month_int = moment().month(splitDate[1]).format("M");
 
+        if (Number(month_int) < 10) {
+            splitDate.push("0" + month_int);
+        } else {
+            splitDate.push(month_int);
+        }
+        
+        
         return splitDate;
     },
 

@@ -5,9 +5,14 @@
     <title>FBS Calendar</title>
     <link href="Content/fullcalendar.css" rel="stylesheet" />
     <link href="Content/jquery.timepicker.css" rel="stylesheet" />
-    <link href="Css/index.css" rel="stylesheet" />
+
     <!--Script load order depends on depency of each js file. Be aware of that.-->
+    <!--Attempting to add bootstrap-->
     <script src="Scripts/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link href="Css/index.css" rel="stylesheet" />
     <script src="Scripts/moment.min.js"></script>
     <script src="Scripts/jquery.timepicker.min.js"></script>
     <script src="Scripts/scheduler-functions.js"></script>
@@ -19,6 +24,9 @@
 
 </head>
 <body>
+    <header class="container-fluid">
+        <h1>Kyle's Appointment Scheduler</h1>
+    </header>
     <div id="calendar"></div>
     <div id="scheduler">
 
@@ -34,20 +42,24 @@
 
             <form id="eventSchedulerForm">
                 <br />
-                Event Title:<br />
-                <input id="eventTitleInput" type="text" name="eventTitle" placeholder="Enter event title here" /><br />
-                Date:<br />
-                <input id="eventDateInput" type="text" name="eventDate" disabled/><br />
-                Start:<br />
-                <input id="eventStartTimeInput" type="text" name="eventStartTime" class="timepicker" /><br />
-                End:<br />
-                <input id="eventEndTimeInput" type="text" name="eventEndTime" class="timepicker"/><br />
+                <label class="form-label-spacing">Event Title:</label><br />
+                <input id="eventTitleInput" class="form-control" type="text" name="eventTitle" placeholder="Enter event title here" /><br />
+
+                <label class="form-label-spacing">Date:</label><br />
+                <input id="eventDateInput" class="form-control" type="text" name="eventDate" disabled/><br />
+
+                <label class="form-label-spacing">Start:</label><br />
+                <input id="eventStartTimeInput" class="form-control timepicker" type="text" name="eventStartTime"/><br />
+
+                <label class="form-label-spacing">End:</label><br />
+                <input id="eventEndTimeInput" class="form-control timepicker" type="text" name="eventEndTime"/><br />
+                
                 <input id="eventAllDayCheckbox" type="checkbox" name="eventAllDay" />All day event<br />
             </form>
 
-            <button id="submitButton" class="generalButton">Submit</button>
+            <button id="submitButton" class="btn btn-primary generalButton">Submit</button>
             
-            <button id="cancelButton" class="generalButton">Cancel</button>
+            <button id="cancelButton" class="btn btn-primary generalButton">Cancel</button>
 
         </div>
 
@@ -58,20 +70,24 @@
 
             <form id="eventEditorForm">
                 <br />
-                Event Title:<br />
-                <input id="eventEditTitleInput" type="text" name="eventEditTitle" /><br />
-                Date:<br />
-                <input id="eventEditDateInput" type="text" name="eventEditDate" placeholder="YYYY-MM-DD"/><br />
-                Start:<br />
-                <input id="eventEditStartTimeInput" type="text" name="eventEditStartTime" class="timepicker" /><br />
-                End:<br />
-                <input id="eventEditEndTimeInput" type="text" name="eventEditEndTime" class="timepicker" /><br />
+                <label class="form-label-spacing">Event Title:</label><br />
+                <input id="eventEditTitleInput" class="form-control" type="text" name="eventEditTitle" /><br />
+
+                <label class="form-label-spacing">Date:</label><br />
+                <input id="eventEditDateInput" class="form-control" type="text" name="eventEditDate" placeholder="YYYY-MM-DD"/><br />
+
+                <label class="form-label-spacing">Start:</label><br />
+                <input id="eventEditStartTimeInput" class="form-control timepicker" type="text" name="eventEditStartTime"/><br />
+
+                <label class="form-label-spacing">End:</label><br />
+                <input id="eventEditEndTimeInput" class="form-control timepicker" type="text" name="eventEditEndTime" /><br />
+                
                 <input id="eventEditAllDayCheckbox" type="checkbox" name="eventEditAllDay" />All day event<br />
             </form>
 
-            <button id="submitEditButton" class="generalButton">Submit Changes</button>
-            <button id="deleteEventButton" class="generalButton">Delete Event</button>
-            <button id="cancelEditButton" class="generalButton">Cancel</button>
+            <button id="submitEditButton" class="btn btn-primary generalButton">Submit Changes</button>
+            <button id="deleteEventButton" class="btn btn-primary generalButton">Delete Event</button>
+            <button id="cancelEditButton" class="btn btn-primary generalButton">Cancel</button>
         </div>
 
     </div>
